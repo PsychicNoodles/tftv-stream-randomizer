@@ -21,8 +21,10 @@
             foreach($json as $stream)
             {
                 echo "\t\t\t<li>\n";
-                echo "\t\t\t\t<p>" . $stream -> {"Streamer"} . "</p>\n";
-                echo "\t\t\t\t<div style=\"background:url('" . $stream -> {"Preview"} . "') no-repeat center center transparent; width:150px; height:84px;\">&nbsp;</div>\n";
+                echo "\t\t\t\t<a href=\"" . $stream -> {"Link"} . "\">";
+                echo "\t\t\t\t\t<p>" . $stream -> {"Streamer"} . "</p>\n";
+                echo "\t\t\t\t\t<div style=\"background:url('" . $stream -> {"Preview"} . "') no-repeat center center transparent; width:150px; height:84px;\">&nbsp;</div>\n";
+                echo "\t\t\t\t</a>";
                 echo "\t\t\t</li>\n";
             }
             echo "\t\t</ul>\n";

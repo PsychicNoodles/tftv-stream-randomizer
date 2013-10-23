@@ -18,11 +18,11 @@ if(empty($_POST) || !isset($_POST["time"]) || $_POST["time"] > time() - 60)
     </body>
 </html>");
     }
+    
+    header("Location: " . $json[array_rand($json)] -> {"Link"});
 }
 else
 {
-    $json = $_POST;
+    header("Location: " . $_POST[array_rand($_POST)]);
 }
-
-header("Location: " . $json[array_rand($json)]);
 ?>

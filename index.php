@@ -35,15 +35,19 @@
         }
         ?>
         </div>
-        <form action="random.php" method="post">
-            <?php
-            foreach($json as $stream)
-            {
-                echo "<input type=\"hidden\" name=\"" . $stream -> {"Streamer"} . "\" value=\"" . $stream -> {"Link"} . "\" />";
-            }
-            echo "<input type=\"hidden\" name=\"time\" value=\"" . $_SERVER["REQUEST_TIME"] . "\" />";
-            ?>
-            <input id="randomize-button" type="submit" class="randomize" value="Randomize!" />
-        </form>
+        <center>
+            <form action="random.php" method="post">
+                <?php
+                foreach($json as $stream)
+                {
+                    echo "<input type=\"hidden\" name=\"" . $stream -> {"Streamer"} . "[]\" value=\"" . $stream -> {"TFTV Link"} . "\" />";
+                    echo "<input type=\"hidden\" name=\"" . $stream -> {"Streamer"} . "[]\" value=\"" . $stream -> {"Twitch Link"} . "\" />";
+                }
+                echo "<input type=\"hidden\" name=\"time\" value=\"" . $_SERVER["REQUEST_TIME"] . "\" />";
+                ?>
+                <input type="submit" id="randomize" value="Randomize!" />
+                <input type="checkbox" name="twitchCheck" id="twitchCheck" /><label for="twitchCheck">Load on Twitch.tv</label>
+            </form>
+        </center>
     </body>
 </html>

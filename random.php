@@ -1,5 +1,5 @@
 <?php
-if(empty($_POST) || !isset($_POST["time"]) || $_POST["time"] > time() - 60)
+if(count($_POST) === 0 || !isset($_POST["time"]) || $_POST["time"] > time() - 60)
 {
     $json = json_decode(file_get_contents("http://tftv-api.herokuapp.com/api/streams.php"));
     if($json === NULL)
@@ -19,10 +19,17 @@ if(empty($_POST) || !isset($_POST["time"]) || $_POST["time"] > time() - 60)
 </html>");
     }
     
-    header("Location: " . $json[array_rand($json)] -> {"Link"});
+    if($_SERVER["REQUEST_METHOD"] == "POST")
+    {
+        header("Location: " . $json[array_rand($json)] -> {(isset($_POST["twitchCheck"]) ? "Twitch" : "TFTV") . " Link"});
+    }
+    else
+    {
+        header("Location: " . $json[array_rand($json)] -> {(array_key_exists("twitch", $_GET) ? "Twitch" : "TFTV") . " Link"});
+    }
 }
 else
 {
-    header("Location: " . $_POST[array_rand($_POST)]);
+    header("Location: " . $_POST[array_rand($_POST)][isset($_POST["twitchCheck"]) ? 1 : 0]);
 }
 ?>
